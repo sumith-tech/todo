@@ -1,0 +1,17 @@
+.container{
+    padding-top: 20px;
+}
+#reminder,#done{
+    width: 320px,450px;
+    height: 250px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 0;
+  }
+  /* #reminder {
+    width: 320px,450px;
+    height: 250px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 0;
+  } */
