@@ -1,4 +1,5 @@
-function addtodo(event){
+
+async function addtodo(event){
     event.preventDefault();
     const todo=event.target.todo.value;
     const Description=event.target.Description.value;
@@ -6,39 +7,33 @@ function addtodo(event){
         todo,
         Description
     }
-    axios.post("https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/todo",obj)
-    .then((response)=>{
-        console.log(response)
-    })
-    .catch((err)=>{
+    try{
+    const addtodo1= await axios.post("https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/todo",obj)
+      console.log(addtodo1)
+    }catch(err){
         console.log(err)
-    })
-
+    }
 }
 //dom content loader
-window.addEventListener("DOMContentLoaded",()=>{
-
-    axios.get("https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/todo")
-    .then((response)=>{
-        for(var i=0;i<response.data.length;i++){
-            console.log(response.data[i])
-            showDataOnScreenReminder(response.data[i])
+ window.addEventListener("DOMContentLoaded",async()=>{
+    try{
+    const addtodo2= await axios.get("https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/todo")
+    
+        for(var i=0;i<addtodo2.data.length;i++){
+            console.log(addtodo2.data[i])
+            showDataOnScreenReminder(addtodo2.data[i])
         }
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-    axios.get("https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/done")
-    .then((response)=>{
-        for(var i=0;i<response.data.length;i++){
-            console.log(response.data[i])
-            showDataOnScreenDone(response.data[i])
-        }
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
 
+    const addtodo3= await axios.get("https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/done")
+    
+        for(var i=0;i<addtodo3.data.length;i++){
+            console.log(addtodo3.data[i])
+            showDataOnScreenDone(addtodo3.data[i])
+        }
+    }catch(err){
+        console.log(err)
+    }
+    
 })
 //show data on reminder
 function showDataOnScreenReminder(data){
@@ -62,14 +57,14 @@ function showDataOnScreenDone(data){
     parentNode.innerHTML=parentNode.innerHTML+childNode;
 }
 
-function deleteTodo(dlt){
-    axios.delete(`https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/todo/${dlt}`)
-    .then((response)=>{
-        console.log(response)
-    })
-    .catch((err)=>{
+async function deleteTodo(dlt){
+    try{
+   const dlttodo1= await axios.delete(`https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/todo/${dlt}`)
+    
+        console.log(dlttodo1);
+    }catch(err){
         console.log(err)
-    })
+    }
     deleteFromScreen(dlt)
 }
 
@@ -84,25 +79,25 @@ function deleteFromScreen(dlt){
 
 //delete from reminder and add in done area
 
-function deleteTodoReminder(dlt){
-    axios.get(`https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/todo/${dlt}`)
-    .then((response)=>{
-        console.log(response.data)
-        addDone(response.data)
-    })
+async function deleteTodoReminder(dlt){
+    try{
+     const dlttodo2= await axios.get(`https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/todo/${dlt}`)
     
+        console.log(dlttodo2.data)
+        addDone(dlttodo2.data)
 
-    axios.delete(`https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/todo/${dlt}`)
-    .then((response)=>{
-        console.log(response)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+     const dlttodo3= await axios.delete(`https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/todo/${dlt}`)
+   
+        console.log(dlttodo3.data)
+    }catch(err){
+        console.log(err);
+    }
     deleteFromScreen(dlt)
-}   
+}
+    
+ 
 //post method for doneTodo
-function addDone(data){
+async function addDone(data){
     
     const todo=data.todo;
     const Description=data.Description;
@@ -110,14 +105,13 @@ function addDone(data){
         todo,
         Description
     }
-    
-    axios.post("https://crudcrud.com/api/02881edc3e974eec9153e940621dd6be/done",obj)
-    .then((response)=>{
-        console.log(response)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    try{ 
+   const addtodo4= await axios.post("https://crudcrud.com/api/13e7537ae7b645f5a2dbea373e71830e/done",obj)
+   
+    console.log(addtodo4)
+   }catch(err){
+    console.log(err)
+   }
 
 }
 

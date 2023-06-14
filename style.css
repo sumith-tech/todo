@@ -1,5 +1,6 @@
 .container{
     padding-top: 20px;
+   
 }
 #reminder,#done{
     width: 320px,450px;
@@ -15,3 +16,8 @@
     border: 2px solid gray;
     margin: 0;
   } */
+  #done{
+
+    padding-top: 10px;
+    
+  }
